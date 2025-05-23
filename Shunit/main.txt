@@ -1,0 +1,79 @@
+#import bot
+#if __name__ == "main":
+#    bot.run_discord_bot()
+import discord
+import json
+from discord.ext import commands
+import responses
+
+
+
+
+
+
+
+
+
+
+
+
+
+file = open('config.json','r')
+config = json.load(file)
+
+bot = commands.Bot(config['prefix'])
+
+#@bot.event
+#async def on_ready():
+#    print('SHUNIT READY TO TEACH YOU')
+
+@bot.event
+async def on_massage(msg):
+    if msg.author == bot.user:
+        return
+
+    username = str(msg.author)
+    user_msg = str(msg.content)
+    channel = str(msg.channel)
+
+
+#    await send_messages(msg,user_msg)
+
+
+#@bot.command(name='ping')
+#async def ping(ctx):
+#    await ctx.send(f'{ctx.author.mention}pong')
+
+
+
+@bot.command(name='hi')
+async def ping(ctx):
+    await ctx.send(f'{ctx.author.mention}hi?')
+@bot.command(name='foo')
+async def ping(ctx:commands.context):
+    await ctx.send(embed=discord.Embed(title=f'{ctx.message.content}'))
+@bot.command(name='l')
+async def ping(ctx:commands.context):
+    await ctx.send(f'{ctx.author.mention}ddd')    
+###@bot.command(name='hi')
+#async def say(msg) -> str:
+#    s = msg.lower()
+
+#    if s == "hi":
+#        
+#        return "hi"
+
+#async def send_messages(massage,user_massage):
+#    try:
+#        response = say(user_massage)
+#        await massage.channel.send(response)
+#    except Exception as e:
+#        print(e)
+
+
+
+#@bot.command(name='die')
+#async def shutdown(die):
+#    await die.bot.logout()
+
+bot.run(config['token'])

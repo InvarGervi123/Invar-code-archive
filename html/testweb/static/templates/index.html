@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Просмотр изображений</title>
+</head>
+<body>
+    <h1>Галерея изображений</h1>
+    <ul>
+        {% for image in images %}
+            <li><img src="uploads/1800 (1).jpg" alt="Image"></li>
+        {% endfor %}
+    </ul>
+    <form action="/" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Загрузить изображение</button>
+    </form>
+</body>
+</html>

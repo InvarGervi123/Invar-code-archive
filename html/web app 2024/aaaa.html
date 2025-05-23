@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מערכת שעות בית ספרית</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .subject1 {
+        background-color: #ffcccc;
+    }
+
+    .subject2 {
+        background-color: #ccffcc;
+    }
+
+    .subject3 {
+        background-color: #ccccff;
+    }
+
+    .day-column {
+        background-color: #ffd699;
+    }
+
+    .lesson-number-column, .lesson-hours-column {
+        background-color: #b3b3b3;
+    }
+</style>
+</head>
+<body>
+
+<table>
+  <tr>
+    <th></th>
+    <th class="day-column">ראשון</th>
+    <th class="day-column">שני</th>
+    <th class="day-column">שלישי</th>
+    <th class="day-column">רביעי</th>
+    <th class="day-column">חמישי</th>
+  </tr>
+  <tr>
+    <td class="lesson-number-column">שיעור 1</td>
+    <td class="subject1"><a href="https://he.wikipedia.org/wiki/%D7%9B%D7%9C%D7%9B%D7%9C%D7%99%D7%AA">כלכלית</a></td>
+    <td class="subject2"><a href="https://he.wikipedia.org/wiki/%D7%A1%D7%A4%D7%A8%D7%95">ספרות</a></td>
+    <td class="subject3"><a href="https://he.wikipedia.org/wiki/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94">מתמטיקה</a></td>
+    <td class="subject1"><a href="https://he.wikipedia.org/wiki/%D7%A4%D7%99%D7%96%D7%99%D7%A7%D7%94">פיזיקה</a></td>
+    <td class="subject2">-</td>
+  </tr>
+  <tr>
+    <td class="lesson-number-column">שיעור 2</td>
+    <td class="subject2">-</td>
+    <td class="subject3"><a href="https://he.wikipedia.org/wiki/%D7%A2%D7%91%D7%A8%D7%99%D7%AA">עברית</a></td>
+    <td class="subject1"><a href="https://he.wikipedia.org/wiki/%D7%9E%D7%AA%D7%9E%D7%98%D7%99%D7%A7%D7%94">מתמטיקה</a></td>
+    <td class="subject2">-</td>
+    <td class="subject3">-</td>
+  </tr>
+  <tr>
+    <td class="lesson-hours-column">שעות השיעור</td>
+    <td class="lesson-hours-column">08:00 - 09:00</td>
+    <td class="lesson-hours-column">09:00 - 10:00</td>
+    <td class="lesson-hours-column">10:00 - 11:00</td>
+    <td class="lesson-hours-column">11:00 - 12:00</td>
+    <td class="lesson-hours-column">12:00 - 13:00</td>
+  </tr>
+</table>
+
+</body>
+</html>

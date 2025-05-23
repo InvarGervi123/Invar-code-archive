@@ -1,0 +1,44 @@
+
+
+# Вставьте ваш ключ API YouTube здесь
+YOUTUBE_API_KEY = "AIzaSyDi9f18HXwa_z5IPZdm8YJ7whput-WOuT8"
+
+# Идентификатор (ID) публичного канала, который вы хотите отслеживать
+CHANNEL_ID_TO_TRACK = "UCurKUbYVo6agFkdZajZwjOA"
+
+# Вставьте идентификатор Discord-канала, куда бот будет отправлять уведомления
+YOUR_DISCORD_CHANNEL_ID = 766982599876411392
+
+
+
+
+
+
+def get_subscriber_count():
+    youtube = build("youtube", "v3", developerKey=YOUTUBE_API_KEY)
+
+    # Получить статистику канала
+    channel_request = youtube.channels().list(
+        part="statistics",
+        id=CHANNEL_ID_TO_TRACK
+    )
+    channel_response = channel_request.execute()
+    subscriber_count = channel_response["items"][0]["statistics"]["subscriberCount"]
+    return int(subscriber_count)
+
+@tasks.loop(seconds=60)  # Проверять количество подписчиков каждые 60 секунд
+async def check_subscriber_count():
+    current_subscriber_count = get_subscriber_count()
+    if hasattr(check_subscriber_count, "prev_subscriber_count"):
+        prev_subscriber_count = check_subscriber_count.prev_subscriber_count
+    else:
+        prev_subscriber_count = current_subscriber_count
+    if current_subscriber_count > prev_subscriber_count:
+        diff_subscribers = current_subscriber_count - prev_subscriber_count
+        channel = bot.get_channel(YOUR_DISCORD_CHANNEL_ID)  # Здесь укажите идентификатор Discord-канала
+        await channel.send(f"Новый подписчик на YouTube-канале! Количество подписчиков: {current_subscriber_count}")
+    check_subscriber_count.prev_subscriber_count = current_subscriber_count
+
+@check_subscriber_count.before_loop
+async def before_check_subscriber_count():
+    await bot.wait_until_ready()

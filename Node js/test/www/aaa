@@ -1,0 +1,108 @@
+using System;
+
+class Student
+{
+    private string name;
+    private int grade1;
+    private int grade2;
+
+    public Student(string name, int grade1, int grade2)
+    {
+        this.name = name;
+        this.grade1 = grade1;
+        this.grade2 = grade2;
+    }
+
+    public string GetName()
+    {
+        return name;
+    }
+
+    public int GetGrade1()
+    {
+        return grade1;
+    }
+
+    public int GetGrade2()
+    {
+        return grade2;
+    }
+
+    public void SetGrade1(int g)
+    {
+        grade1 = g;
+    }
+
+    public void SetGrade2(int g)
+    {
+        grade2 = g;
+    }
+
+    public string ToString()
+    {
+        return $"Name: {name}, Grade 1: {grade1}, Grade 2: {grade2}";
+    }
+
+    public double Average()
+    {
+        return (grade1 + grade2) / 2.0;
+    }
+
+    public int MaxGrade()
+    {
+        return Math.Max(grade1, grade2);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Student[] students = new Student[3];
+
+        for (int i = 0; i < students.Length; i++)
+        {
+            Console.Write($"Enter name of student {i + 1}: ");
+            string name = Console.ReadLine();
+            students[i] = new Student(name, 0, 0);
+        }
+
+        Console.WriteLine("Initial state of students:");
+        foreach (Student student in students)
+        {
+            Console.WriteLine(student.ToString());
+        }
+
+        for (int i = 0; i < students.Length; i++)
+        {
+            Console.Write($"Enter grade for exam 1 for {students[i].GetName()}: ");
+            int grade1 = int.Parse(Console.ReadLine());
+            students[i].SetGrade1(grade1);
+        }
+
+        Console.WriteLine("After updating exam 1 grades:");
+        foreach (Student student in students)
+        {
+            Console.WriteLine($"{student.ToString()}, Average: {student.Average()}");
+        }
+
+        for (int i = 0; i < students.Length; i++)
+        {
+            Console.Write($"Enter grade for exam 2 for {students[i].GetName()}: ");
+            int grade2 = int.Parse(Console.ReadLine());
+            students[i].SetGrade2(grade2);
+        }
+
+        Console.WriteLine("After updating exam 2 grades:");
+        foreach (Student student in students)
+        {
+            Console.WriteLine($"{student.ToString()}, Average: {student.Average()}");
+        }
+
+        Console.WriteLine("Final state of students:");
+        foreach (Student student in students)
+        {
+            Console.WriteLine($"{student.ToString()}, Average: {student.Average()}, Max Grade: {student.MaxGrade()}");
+        }
+    }
+}

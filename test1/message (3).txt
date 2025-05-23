@@ -1,0 +1,115 @@
+using System;
+
+namespace ConsoleClassTest3
+{
+    class Gun
+    {
+        private bool magazin = false;
+
+        private int[] twice = new int[3];
+
+        public bool auto_reset = true;
+
+        private void Recharge()
+        {
+                Console.Write("Recharge");
+                foreach (var item in twice)
+                {
+                    System.Threading.Thread.Sleep(150);
+                    Console.Write(".");
+                }
+                Console.WriteLine();
+                magazin = true;
+                Console.WriteLine("FULL");
+        }
+
+        public void Reset()
+        {
+            if (!magazin)
+            {
+                Recharge();
+            }
+            else
+            {
+                Console.WriteLine("WAS FULL");
+            }
+        }
+        public void Auto_Reset_Shoot()
+        {
+            if (!magazin)
+            {
+                Console.WriteLine("MAGAZIN IS NOT FULL");
+                if (auto_reset)
+                {
+                    Recharge();
+                    Shoot();
+                }                
+            }
+            else
+            {
+                Shoot();
+            }            
+        }
+        private void Shoot()
+        {
+                Console.Write("BOOM");
+                foreach (var item in twice)
+                {
+                    System.Threading.Thread.Sleep(100);
+                    Console.Write(" BOOM");
+                }
+                Console.WriteLine();
+                magazin = false;
+        }
+            
+        
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Gun gun = new Gun();
+            Gun gun2 = new Gun();
+            String command = Console.ReadLine();
+            while (true)
+            {
+                if (command == "s") // Shoot
+                {
+                    gun.Auto_Reset_Shoot();
+                }
+                else if (command == "r") // Reset
+                {
+                    gun.Reset();
+                }
+                else if (command == "ar") //auto_reset
+                {
+                    if (gun.auto_reset)
+                    {
+                        gun.auto_reset = false;
+                        Console.WriteLine("AUTO Recharge off");
+                    }
+                    else
+                    {
+                        gun.auto_reset = true;
+                        Console.WriteLine("AUTO Recharge on");
+                    }
+                }
+                else if (command == "g2mode")
+                {
+                    gun.auto_reset = true;
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Console.WriteLine("--------------GUN-------------------------");
+                        gun.Auto_Reset_Shoot();
+                        Console.WriteLine("--------------GUN2------------------------");
+                        gun2.Auto_Reset_Shoot();
+                    }
+                    
+                }
+                command = Console.ReadLine();
+            }
+            Console.ReadKey();
+        }
+    }
+}
