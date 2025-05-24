@@ -3,7 +3,7 @@ import json
 from discord.ext import commands
 import responses
 
-#yossi = 1111993470656188446
+#yossi = ######################
 
 
 
@@ -17,8 +17,7 @@ async def send_messages(message, user_message):
         print(e)
 
 def run_discord_bot():
-    TOKEN = "MTExMTk2NjIzODA3MjEyNzU0OA.Gc21B5.BUqH-YLSwPwX_1kek3CmCJF017fvCpxor_T62Y"
-
+    token = os.getenv("DISCORD_TOKEN")
     client = discord.Client(intents=discord.Intents.all())
 
     @client.event
